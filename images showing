@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  <b:include data='blog' name='all-head-content'></b:include>
+  <title><data:blog.pageTitle/></title>
+
+  <!-- Font Awesome -->
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'></link>
+
+  <!-- CSS inside b:skin CDATA (no JS here) -->
+  <b:skin><![CDATA[
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #111827;
+      color: #f3f4f6;
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav { position: fixed; top: 0; width: 100%; z-index: 1000; transition: all 0.3s; }
+    nav.scrolled { background: rgba(17,24,39,0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+    .nav-container { max-width: 1280px; margin: 0 auto; padding: 1rem 2rem; display:flex; justify-content:space-between; align-items:center; }
+    .logo { font-size:1.5rem; font-weight:bold; background:linear-gradient(to right,#3b82f6,#9333ea); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:#d1d5db; text-decoration:none; transition:color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color:#3b82f6; }
+    .nav-actions { display:flex; align-items:center; gap:1rem; }
+    .mobile-menu-btn { display:none; background:none; border:none; color:inherit; font-size:1.5rem; cursor:pointer; }
+
+    .btn-cv{background:linear-gradient(90deg,#06b6d4,#7c3aed);color:white;padding:.5rem .9rem;border-radius:.5rem;text-decoration:none;font-weight:600}
+
+    .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:6rem 2rem 2rem; position:relative; overflow:hidden; }
+    .blob { position:absolute; width:18rem; height:18rem; border-radius:50%; filter:blur(60px); opacity:0.2; animation:blob 7s infinite; }
+    .blob-1 { top:5rem; left:2.5rem; background:#3b82f6; }
+    .blob-2 { top:10rem; right:2.5rem; background:#9333ea; animation-delay:2s; }
+    .blob-3 { bottom:-5rem; left:50%; background:#ec4899; animation-delay:4s; }
+    @keyframes blob { 0%,100%{transform:translate(0,0) scale(1);}25%{transform:translate(20px,-50px) scale(1.1);}50%{transform:translate(-20px,20px) scale(0.9);}75%{transform:translate(50px,50px) scale(1.05);} }
+
+    .hero-content { text-align:center; position:relative; z-index:1; max-width:1280px; }
+    .availability-badge { display:inline-block; padding:0.5rem 1rem; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.2); border-radius:9999px; font-size:0.875rem; font-weight:600; margin-bottom:1.5rem; }
+    .hero h1 { font-size:clamp(2.5rem,8vw,5rem); font-weight:bold; margin-bottom:1.5rem; background:linear-gradient(to right,#3b82f6,#9333ea,#ec4899); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; line-height:1.2; }
+    .hero p { font-size:clamp(1.125rem,2vw,1.5rem); color:#9ca3af; margin-bottom:2rem; max-width:48rem; margin-left:auto; margin-right:auto; }
+
+    .cta-buttons { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-bottom:3rem; }
+    .btn { padding:1rem 2rem; border-radius:0.5rem; font-weight:600; text-decoration:none; transition:all 0.3s; border:none; cursor:pointer; font-size:1rem; }
+    .btn-primary { background:linear-gradient(to right,#3b82f6,#9333ea); color:white; }
+    .btn-secondary { background:linear-gradient(to right,#ef4444,#ec4899); color:white; }
+    .btn-outline { background:transparent; border:2px solid #4b5563; color:inherit; }
+
+    .social-links { display:flex; justify-content:center; gap:1.5rem; }
+    .social-links a { display:flex; align-items:center; justify-content:center; width:3rem; height:3rem; border-radius:50%; color:inherit; transition:all 0.3s; }
+
+    .scroll-indicator { margin-top:4rem; animation:bounce 2s infinite; }
+    @keyframes bounce { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+
+    section { padding:5rem 2rem; max-width:1280px; margin:0 auto; }
+    .section-alt { background:#1f2937; }
+    .section-title { font-size:2.5rem; font-weight:bold; text-align:center; margin-bottom:1rem; }
+    .section-subtitle { text-align:center; color:#9ca3af; margin-bottom:3rem; }
+
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+    .about-image { width:100%; height:24rem; background:#374151; border-radius:0.75rem; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .about-image i { font-size:8rem; color:#6b7280; }
+
+    .stats-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin-top:2rem; }
+    .stat-card { padding:1.5rem; background:#374151; border-radius:0.75rem; }
+    .stat-number { font-size:2rem; font-weight:bold; }
+    .stat-number.blue { color:#3b82f6; }
+    .stat-number.purple { color:#9333ea; }
+    .stat-number.pink { color:#ec4899; }
+    .stat-number.green { color:#10b981; }
+    .stat-label { font-size:0.875rem; color:#9ca3af; }
+
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; }
+    .project-card { background:#1f2937; border-radius:0.75rem; overflow:hidden; box-shadow:0 4px 6px rgba(0,0,0,0.1); transition:all 0.3s; }
+    .project-image img { width:100%; height:100%; object-fit:cover; transition:transform 0.3s; }
+
+    .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
+    .skill-card { padding:1.5rem; background:#374151; border-radius:0.75rem; transition:all 0.3s; }
+
+    .videos-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2rem; }
+    .video-card { background:#1f2937; border-radius:0.75rem; overflow:hidden; cursor:pointer; transition:all 0.3s; }
+
+    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; }
+    .gallery-item { position:relative; height:16rem; border-radius:0.75rem; overflow:hidden; }
+
+    .certifications-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem; }
+
+    .blog-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; }
+    .blog-card { padding:1.5rem; background:#374151; border-radius:0.75rem; cursor:pointer; transition:all 0.3s; }
+
+    .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; margin-bottom:3rem; }
+    .contact-card { padding:1.5rem; background:#1f2937; border-radius:0.75rem; box-shadow:0 4px 6px rgba(0,0,0,0.1); text-align:center; transition:all 0.3s; color:inherit; }
+
+    footer { padding:2rem; border-top:1px solid #374151; background:#111827; text-align:center; }
+
+    @media (max-width:768px){
+      .nav-links { display:none; }
+      .mobile-menu-btn { display:block; }
+      .nav-links.active { display:flex; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:#1f2937; padding:1rem; gap:0.5rem; }
+      .about-grid { grid-template-columns:1fr; }
+      .form-row { grid-template-columns:1fr; }
+      .gallery-grid { grid-template-columns:repeat(2,1fr); }
+    }
+  ]]></b:skin>
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav id='navbar'>
+    <div class='nav-container'>
+      <div class='logo'><data:blog.title/></div>
+      <ul class='nav-links' id='navLinks'>
+        <li><a class='nav-link active' href='#home'>Home</a></li>
+        <li><a class='nav-link' href='#about'>About</a></li>
+        <li><a class='nav-link' href='#projects'>Projects</a></li>
+        <li><a class='nav-link' href='#skills'>Skills</a></li>
+        <li><a class='nav-link' href='#videos'>Videos</a></li>
+        <li><a class='nav-link' href='#gallery'>Gallery</a></li>
+        <li><a class='nav-link' href='#certifications'>Certifications</a></li>
+        <li><a class='nav-link' href='#blog'>Blog</a></li>
+        <li><a class='nav-link' href='#contact'>Contact</a></li>
+      </ul>
+      <div class='nav-actions'>
+        <!-- CV download button: replace href with your CV url -->
+        <a class='btn-cv' href='https://example.com/your-cv.pdf' id='cvBtn' rel='noopener' target='_blank'>Download CV</a>
+        <button aria-label='Open menu' class='mobile-menu-btn' id='mobileMenuBtn'><i class='fas fa-bars'></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class='hero' id='home'>
+    <div class='blob blob-1'></div>
+    <div class='blob blob-2'></div>
+    <div class='blob blob-3'></div>
+
+    <div class='hero-content'>
+      <div class='availability-badge'>&#10024; Available for Freelance Projects</div>
+      <h1>Senior Frontend<br/>Engineer</h1>
+      <p>Crafting exceptional digital experiences with modern web technologies. Specialized in React, TypeScript, and scalable frontend architectures.</p>
+      <div class='cta-buttons'>
+        <a class='btn btn-primary' href='#projects'>View Projects</a>
+        <a class='btn btn-secondary' href='#videos'>Watch Tutorials</a>
+        <a class='btn btn-outline' href='#contact'>Get in Touch</a>
+      </div>
+      <div class='social-links'>
+        <a aria-label='GitHub' href='https://github.com'><i class='fab fa-github'></i></a>
+        <a aria-label='LinkedIn' href='https://linkedin.com'><i class='fab fa-linkedin'></i></a>
+        <a aria-label='Email' href='mailto:contact@example.com'><i class='fas fa-envelope'></i></a>
+      </div>
+      <div class='scroll-indicator'><a class='btn btn-outline' href='#about'>Scroll to About &#8595;</a></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id='about'>
+    <h2 class='section-title'>About Me</h2>
+    <p class='section-subtitle'>A quick background and where I focus my energy.</p>
+    <div class='about-grid'>
+      <div class='about-image'>
+        <img alt='Profile photo' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiILMmCwK63L7GraNyV2rBlKNcqbjTdQjDOK7YAeAdM-MXOEGbvUkji5l_1x-wm4eWnyKSn_Tmf1VG1k_WMkjisj6_lE4tib7vCA4dHSCrltWw1LEMqRN-QJvzdjD_qfa88hsxWSZOkQHJKGrX_wq34fjrTHzwzgYSuwpCqCtgG8ECB1kjpJUbqRPtLUu8/s3882/photo-1498050108023-c5249f4df085.jpg' style='width:100%;height:100%;object-fit:cover;border-radius:0.75rem;'></img>
+      </div>
+      <div class='about-text'>
+        <h3 style='margin-bottom:0.75rem'>Hi, I&#39;m John Doe &#8212; Frontend Engineer</h3>
+        <p>I build high-performance, accessible, and maintainable web applications. I enjoy solving hard UX problems, optimizing rendering performance, and mentoring teams on frontend best practices.</p>
+        <div class='stats-grid'>
+          <div class='stat-card'><div class='stat-number blue'>8+</div><div class='stat-label'>Years Experience</div></div>
+          <div class='stat-card'><div class='stat-number purple'>100+</div><div class='stat-label'>Projects Delivered</div></div>
+          <div class='stat-card'><div class='stat-number pink'>50K</div><div class='stat-label'>GitHub Stars</div></div>
+          <div class='stat-card'><div class='stat-number green'>20</div><div class='stat-label'>Mentored Engineers</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class='section-alt' id='projects'>
+    <h2 class='section-title'>Selected Projects</h2>
+    <p class='section-subtitle'>Projects that showcase architecture, performance and UX.</p>
+
+    <div class="projects-grid" id="projectsGrid">
+
+        <div class="project-card">
+            <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&amp;h=600&amp;fit=crop" alt="Realtime Dashboard"></img>
+            </div>
+            <div class="project-content">
+                <div class="project-title">Realtime Dashboard</div>
+                <div class="project-description">High-performance React dashboard with websockets and charting.</div>
+                <div class="project-tags"><span class="tag">React</span><span class="tag">Websockets</span><span class="tag">D3</span></div>
+                <div class="project-metrics"><p>Used in production by 10k+ users</p></div>
+                <div class="project-links"><a href="#">Live</a> <a href="#">Repo</a></div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&amp;h=600&amp;fit=crop" alt="Design System"></img>
+            </div>
+            <div class="project-content">
+                <div class="project-title">Design System</div>
+                <div class="project-description">A scalable component library with theming and accessibility.</div>
+                <div class="project-tags"><span class="tag">TypeScript</span><span class="tag">Storybook</span><span class="tag">WCAG</span></div>
+                <div class="project-metrics"><p>60+ components</p></div>
+                <div class="project-links"><a href="#">Docs</a> <a href="#">Repo</a></div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?w=1200&amp;h=600&amp;fit=crop" alt="E-commerce PWA"></img>
+            </div>
+            <div class="project-content">
+                <div class="project-title">E-commerce PWA</div>
+                <div class="project-description">Fast, offline-capable storefront with payment integrations.</div>
+                <div class="project-tags"><span class="tag">PWA</span><span class="tag">Next.js</span><span class="tag">Stripe</span></div>
+                <div class="project-metrics"><p>50% faster checkout</p></div>
+                <div class="project-links"><a href="#">Live</a> <a href="#">Case Study</a></div>
+            </div>
+        </div>
+
+    </div>
+
+  </section>
+
+  <!-- Skills -->
+  <section id='skills'>
+    <h2 class='section-title'>Skills &amp; Tools</h2>
+    <p class='section-subtitle'>Technologies I use frequently.</p>
+    <div class='skills-grid' id='skillsGrid'>
+
+        <div class='skill-card'>
+            <div class='skill-header'><i class='fab fa-react'></i><div class='skill-title'>Frontend Frameworks</div></div>
+            <div class='skill-items'><span class='tag'>React</span><span class='tag'>Next.js</span><span class='tag'>Preact</span><span class='tag'>Vue</span></div>
+        </div>
+
+        <div class='skill-card'>
+            <div class='skill-header'><i class='fab fa-js-square'></i><div class='skill-title'>Languages &amp; Tooling</div></div>
+            <div class='skill-items'><span class='tag'>TypeScript</span><span class='tag'>JavaScript</span><span class='tag'>Babel</span><span class='tag'>Webpack</span></div>
+        </div>
+
+    </div>
+  </section>
+
+  <!-- Videos -->
+  <section class='section-alt' id='videos'>
+    <h2 class='section-title'>Tutorials &amp; Talks</h2>
+    <p class='section-subtitle'>Selected videos and talks.</p>
+    <div class='videos-grid' id='videosGrid'>
+
+        <div class='video-card'>
+            <a href='https://www.youtube.com/watch?v=ysz5S6PUM-U' target='_blank'>
+                <div class='video-thumbnail'><img src='https://i.ytimg.com/vi/ysz5S6PUM-U/maxresdefault.jpg?w=1200&amp;h=600&amp;fit=crop' alt='Building a Real-Time Chat Application'></img></div>
+                <div class='video-info'><div class='video-title'>Building a Real-Time Chat Application</div><div class='video-meta'>125K views</div></div>
+            </a>
+        </div>
+
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id='gallery'>
+    <h2 class='section-title'>Gallery</h2>
+    <p class='section-subtitle'>Screenshots, designs and behind-the-scenes.</p>
+    <div class='gallery-grid' id='galleryGrid'>
+
+        <div class='gallery-item'><img src='https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&amp;h=800&amp;fit=crop' alt='Workspace'></img></div>
+        <div class='gallery-item'><img src='https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1200&amp;h=800&amp;fit=crop' alt='Design'></img></div>
+
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class='section-alt' id='certifications'>
+    <h2 class='section-title'>Certifications</h2>
+    <p class='section-subtitle'>Professional certifications and recognitions.</p>
+    <div class='certifications-grid' id='certGrid'>
+
+        <div class='cert-card'><div class='cert-icon'><i class='fas fa-certificate'></i></div><div class='cert-info'><h3>Frontend Masters - Advanced React</h3><div class='cert-issuer'>Frontend Masters</div><div class='cert-year'>2023</div><div><a href='https://frontendmasters.com/certificate/abc123' target='_blank'>Verify</a></div></div></div>
+
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section id='blog'>
+    <h2 class='section-title'>Writing &amp; Articles</h2>
+    <p class='section-subtitle'>Selected posts and technical deep dives.</p>
+    <div class='blog-grid' id='blogGrid'>
+
+        <article class='blog-card'><div class='blog-meta'><i class='fas fa-calendar-alt'></i> 2024-11-10</div><div class='blog-title'>Optimizing React Rendering</div><div class='blog-excerpt'>Techniques to reduce re-renders and improve FPS.</div><a href='https://example.com/optimizing-react-rendering' target='_blank'>Read more</a></article>
+
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class='section-alt' id='contact'>
+    <h2 class='section-title'>Contact</h2>
+    <p class='section-subtitle'>Let&#39;s build something great together.</p>
+
+    <div class='contact-grid'>
+      <a class='contact-card' href='mailto:contact@example.com'><i class='fas fa-envelope'></i><h3>Email</h3><p>contact@example.com</p></a>
+      <a class='contact-card' href='tel:+1234567890'><i class='fas fa-phone'></i><h3>Phone</h3><p>+1 234 567 890</p></a>
+      <div class='contact-card'><i class='fas fa-map-marker-alt'></i><h3>Location</h3><p>Remote / Open to relocation</p></div>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>Made with &#10084;&#65039; &#8212; Senior Frontend Engineer</p>
+    <p>&#169; <span id='year'></span> <data:blog.title/>. All rights reserved.</p>
+  </footer>
+
+  <!-- JS placed here and wrapped inside CDATA (no raw & characters in the JS source) -->
+  <script type='text/javascript'><![CDATA[
+(function(){
+  // Mobile menu toggle
+  var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  var navLinks = document.getElementById('navLinks');
+  if(mobileMenuBtn){
+    mobileMenuBtn.addEventListener('click', function(){ if(navLinks) navLinks.classList.toggle('active'); });
+  }
+
+  // Navbar scroll effect
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function(){
+    if(!navbar) return;
+    if(window.scrollY > 20) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
+  });
+
+  // Current year
+  var yearEl = document.getElementById('year');
+  if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var href = this.getAttribute('href');
+      if(!href || href === '#') return;
+      var target = document.querySelector(href);
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+        if(navLinks && navLinks.classList.contains('active')) navLinks.classList.remove('active');
+      }
+    });
+  });
+
+  // Active nav highlight
+  var sections = document.querySelectorAll('section'), navItems = document.querySelectorAll('.nav-link');
+  function onScroll(){
+    if(!sections.length) return;
+    var idx = sections.length - 1;
+    for(var i=0;i<sections.length;i++){
+      var rect = sections[i].getBoundingClientRect();
+      if(rect.top <= 120) idx = i;
+    }
+    navItems.forEach(function(it){ it.classList.remove('active'); });
+    var id = (sections[idx] && sections[idx].id) ? sections[idx].id : 'home';
+    var activeLink = document.querySelector('.nav-link[href="#'+id+'"]');
+    if(activeLink) activeLink.classList.add('active');
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll);
+
+  // Close mobile menu on outside click
+  document.addEventListener('click', function(e){
+    if(!navLinks || !mobileMenuBtn) return;
+    if(navLinks.classList.contains('active')){
+      var inside = navLinks.contains(e.target) || mobileMenuBtn.contains(e.target);
+      if(!inside) navLinks.classList.remove('active');
+    }
+  });
+
+})();
+]]></script>
+
+  <!-- Required Blogger Blog widget -->
+  <b:section class='main' id='main' maxwidgets='1' showaddelement='yes'>
+    <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog'>
+      <b:widget-settings>
+        <b:widget-setting name='showDateHeader'>true</b:widget-setting>
+        <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+        <b:widget-setting name='authorLabel'>By</b:widget-setting>
+        <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+        <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='showAuthor'>false</b:widget-setting>
+        <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+        <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='reactionsLabel'></b:widget-setting>
+        <b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
+        <b:widget-setting name='style.layout'>1x1</b:widget-setting>
+        <b:widget-setting name='showLabels'>true</b:widget-setting>
+        <b:widget-setting name='showLocation'>true</b:widget-setting>
+        <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+        <b:widget-setting name='postsPerAd'>1</b:widget-setting>
+        <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+        <b:widget-setting name='style.bordercolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='showInlineAds'>false</b:widget-setting>
+        <b:widget-setting name='showReactions'>false</b:widget-setting>
+      </b:widget-settings>
+    </b:widget>
+  </b:section>
+
+</body>
+</html>
