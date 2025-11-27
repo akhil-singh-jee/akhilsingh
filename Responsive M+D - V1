@@ -1,0 +1,1156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:b='http://www.google.com/2005/gml/b'
+      xmlns:data='http://www.google.com/2005/gml/data'
+      xmlns:expr='http://www.google.com/2005/gml/expr'>
+
+<head>
+  <b:include data='blog' name='all-head-content'/>
+  <title><data:blog.pageTitle/></title>
+  <!-- IMPORTANT: responsive on mobile -->
+  <meta content='width=device-width, initial-scale=1' name='viewport'/>
+
+  <!-- Font Awesome -->
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'/>
+
+  <!-- Main CSS inside b:skin -->
+  <b:skin><![CDATA[
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #111827;
+      color: #f3f4f6;
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    a { color: inherit; }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(17,24,39,0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 1.25rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .logo {
+      font-size:1.5rem;
+      font-weight:bold;
+      background:linear-gradient(to right,#3b82f6,#9333ea);
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .nav-links { display:flex; gap:1.5rem; list-style:none; }
+    .nav-links a {
+      color:#d1d5db;
+      text-decoration:none;
+      font-size:0.95rem;
+      transition:color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color:#3b82f6; }
+    .nav-actions { display:flex; align-items:center; gap:1rem; }
+    .mobile-menu-btn {
+      display:none;
+      background:none;
+      border:none;
+      color:inherit;
+      font-size:1.5rem;
+      cursor:pointer;
+    }
+
+    .btn-cv {
+      background:linear-gradient(90deg,#06b6d4,#7c3aed);
+      color:white;
+      padding:.5rem .9rem;
+      border-radius:.5rem;
+      text-decoration:none;
+      font-weight:600;
+      font-size:0.9rem;
+    }
+
+    .hero {
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:6rem 1.25rem 2.5rem;
+      position:relative;
+      overflow:hidden;
+    }
+    .blob {
+      position:absolute;
+      width:18rem;
+      height:18rem;
+      border-radius:50%;
+      filter:blur(60px);
+      opacity:0.2;
+      animation:blob 7s infinite;
+    }
+    .blob-1 { top:5rem; left:2.5rem; background:#3b82f6; }
+    .blob-2 { top:10rem; right:2.5rem; background:#9333ea; animation-delay:2s; }
+    .blob-3 { bottom:-5rem; left:50%; background:#ec4899; animation-delay:4s; }
+    @keyframes blob {
+      0%,100%{transform:translate(0,0) scale(1);}
+      25%{transform:translate(20px,-50px) scale(1.1);}
+      50%{transform:translate(-20px,20px) scale(0.9);}
+      75%{transform:translate(50px,50px) scale(1.05);}
+    }
+
+    .hero-content {
+      text-align:center;
+      position:relative;
+      z-index:1;
+      max-width:900px;
+      margin:0 auto;
+    }
+    .availability-badge {
+      display:inline-block;
+      padding:0.4rem 1rem;
+      background:rgba(59,130,246,0.1);
+      border:1px solid rgba(59,130,246,0.25);
+      border-radius:9999px;
+      font-size:0.8rem;
+      font-weight:600;
+      margin-bottom:1.5rem;
+    }
+    .hero h1 {
+      font-size:clamp(2.5rem,8vw,4.4rem);
+      font-weight:bold;
+      margin-bottom:1.25rem;
+      background:linear-gradient(to right,#3b82f6,#9333ea,#ec4899);
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+      line-height:1.2;
+    }
+    .hero p {
+      font-size:clamp(1.05rem,2vw,1.35rem);
+      color:#9ca3af;
+      margin-bottom:2rem;
+      max-width:48rem;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .cta-buttons {
+      display:flex;
+      flex-wrap:wrap;
+      gap:0.75rem;
+      justify-content:center;
+      margin-bottom:2.5rem;
+    }
+    .btn {
+      padding:0.85rem 1.7rem;
+      border-radius:0.55rem;
+      font-weight:600;
+      text-decoration:none;
+      transition:all 0.3s;
+      border:none;
+      cursor:pointer;
+      font-size:0.95rem;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .btn-primary { background:linear-gradient(to right,#3b82f6,#9333ea); color:white; }
+    .btn-secondary { background:linear-gradient(to right,#ef4444,#ec4899); color:white; }
+    .btn-outline { background:transparent; border:1px solid #4b5563; color:#e5e7eb; }
+
+    .btn:hover { transform:translateY(-1px); box-shadow:0 8px 20px rgba(15,23,42,0.6); }
+
+    .social-links {
+      display:flex;
+      justify-content:center;
+      gap:1rem;
+    }
+    .social-links a {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:2.7rem;
+      height:2.7rem;
+      border-radius:999px;
+      border:1px solid rgba(55,65,81,0.8);
+      transition:all 0.25s;
+      font-size:1.1rem;
+    }
+    .social-links a:hover {
+      border-color:#3b82f6;
+      background:rgba(37,99,235,0.15);
+      transform:translateY(-2px);
+    }
+
+    .scroll-indicator {
+      margin-top:3rem;
+      animation:bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-8px);}
+    }
+
+    section {
+      padding:4.5rem 1.25rem;
+      max-width:1280px;
+      margin:0 auto;
+    }
+    .section-alt {
+      background:#1f2937;
+      max-width:none;
+      width:100%;
+    }
+    .section-title {
+      font-size:2.1rem;
+      font-weight:800;
+      text-align:center;
+      margin-bottom:0.5rem;
+    }
+    .section-subtitle {
+      text-align:center;
+      color:#9ca3af;
+      margin-bottom:2.25rem;
+      font-size:0.95rem;
+    }
+
+    .about-grid {
+      display:grid;
+      grid-template-columns:1.2fr 1.4fr;
+      gap:2.5rem;
+      align-items:center;
+    }
+    .about-image {
+      width:100%;
+      height:21rem;
+      background:#374151;
+      border-radius:0.9rem;
+      overflow:hidden;
+    }
+    .about-image img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .stats-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1rem;
+      margin-top:1.5rem;
+    }
+    .stat-card {
+      padding:1.2rem;
+      background:#111827;
+      border-radius:0.75rem;
+      border:1px solid rgba(55,65,81,0.9);
+    }
+    .stat-number { font-size:1.7rem; font-weight:800; }
+    .stat-number.blue { color:#3b82f6; }
+    .stat-number.purple { color:#9333ea; }
+    .stat-number.pink { color:#ec4899; }
+    .stat-number.green { color:#10b981; }
+    .stat-label { font-size:0.8rem; color:#9ca3af; }
+
+    .projects-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.5rem;
+    }
+    .project-card {
+      background:#111827;
+      border-radius:0.9rem;
+      overflow:hidden;
+      box-shadow:0 4px 10px rgba(15,23,42,0.7);
+      border:1px solid rgba(55,65,81,0.9);
+      transition:transform 0.25s, box-shadow 0.25s;
+    }
+    .project-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 14px 35px rgba(15,23,42,0.9);
+    }
+    .project-image { height:210px; overflow:hidden; }
+    .project-image img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform 0.4s;
+    }
+    .project-card:hover .project-image img { transform:scale(1.05); }
+    .project-content { padding:1.25rem; }
+    .project-title {
+      font-weight:800;
+      font-size:1.05rem;
+      margin-bottom:0.4rem;
+      background:linear-gradient(90deg,#3b82f6,#9333ea);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .project-description {
+      color:#cbd5e1;
+      margin-bottom:0.55rem;
+      font-size:0.9rem;
+    }
+    .project-tags {
+      margin-bottom:0.75rem;
+      display:flex;
+      gap:0.45rem;
+      flex-wrap:wrap;
+    }
+    .tag {
+      border:0;
+      padding:.25rem .65rem;
+      border-radius:999px;
+      font-weight:600;
+      background:rgba(31,41,55,0.9);
+      color:#e5e7eb;
+      cursor:pointer;
+      font-size:0.75rem;
+      transition:all 0.18s ease;
+    }
+    .tag:hover { transform:translateY(-2px); background:linear-gradient(90deg,#06b6d4,#7c3aed); color:#fff; }
+    .tag.active {
+      background:linear-gradient(90deg,#06b6d4,#7c3aed);
+      color:#fff;
+      box-shadow:0 6px 18px rgba(124,58,237,0.18);
+    }
+
+    .skills-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:1.3rem;
+    }
+    .skill-card {
+      padding:1.2rem;
+      background:#111827;
+      border-radius:0.75rem;
+      border:1px solid rgba(55,65,81,0.9);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .skill-card:hover { transform:translateY(-4px); box-shadow:0 12px 28px rgba(15,23,42,0.9); }
+    .skill-header { display:flex; align-items:center; gap:.6rem; margin-bottom:.4rem; }
+    .skill-header i {
+      font-size:1.25rem;
+      background:linear-gradient(90deg,#06b6d4,#7c3aed);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .skill-title {
+      font-weight:700;
+      font-size:0.95rem;
+      background:linear-gradient(90deg,#06b6d4,#7c3aed);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .skill-items { display:flex; gap:.45rem; flex-wrap:wrap; }
+    .skill-items .tag {
+      background:transparent;
+      border:1px solid rgba(55,65,81,0.9);
+      padding:.25rem .55rem;
+    }
+
+    .videos-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+      gap:1.5rem;
+    }
+    .video-card {
+      background:#111827;
+      border-radius:0.9rem;
+      overflow:hidden;
+      border:1px solid rgba(55,65,81,0.9);
+      cursor:pointer;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .video-card:hover { transform:translateY(-4px); box-shadow:0 14px 32px rgba(15,23,42,0.9); }
+    .video-thumbnail { position:relative; height:220px; overflow:hidden; }
+    .video-thumbnail img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .play-overlay {
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .play-icon {
+      background:rgba(220,38,38,0.95);
+      color:white;
+      font-weight:800;
+      padding:0.55rem 0.9rem;
+      border-radius:999px;
+      font-size:1rem;
+      box-shadow:0 6px 18px rgba(220,38,38,0.28);
+    }
+    .video-info { padding:0.9rem 1rem 1rem; }
+    .video-title { font-size:0.98rem; font-weight:700; margin-bottom:0.2rem; }
+    .video-meta { font-size:0.78rem; color:#9ca3af; }
+
+    .gallery-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+      gap:0.9rem;
+    }
+    .gallery-item {
+      position:relative;
+      height:150px;
+      border-radius:0.75rem;
+      overflow:hidden;
+    }
+    .gallery-item img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition: transform 0.4s ease;
+      display:block;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-short {
+      position:absolute;
+      top:8px;
+      left:8px;
+      background:rgba(0,0,0,0.6);
+      color:#fff;
+      padding:.2rem .45rem;
+      border-radius:6px;
+      font-weight:600;
+      font-size:0.7rem;
+      display:none;
+    }
+    .gallery-item:hover .gallery-short { display:block; }
+
+    .certifications-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.25rem;
+    }
+    .cert-card {
+      display:flex;
+      gap:1rem;
+      align-items:center;
+      padding:1rem;
+      background:#111827;
+      border-radius:0.85rem;
+      border:1px solid rgba(55,65,81,0.9);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .cert-card:hover { transform:translateY(-4px); box-shadow:0 12px 28px rgba(15,23,42,0.9); }
+    .cert-image img {
+      width:150px;
+      height:100px;
+      object-fit:cover;
+      border-radius:6px;
+      display:block;
+    }
+    .cert-info h3 { margin:0 0 .1rem 0; font-size:0.95rem; }
+
+    .blog-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.3rem;
+    }
+    .blog-card {
+      padding:1.25rem;
+      background:#111827;
+      border-radius:0.85rem;
+      border:1px solid rgba(55,65,81,0.9);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .blog-card:hover { transform:translateY(-4px); box-shadow:0 12px 30px rgba(15,23,42,0.9); }
+    .blog-title {
+      font-weight:800;
+      background: linear-gradient(90deg,#f97316,#f43f5e);
+      -webkit-background-clip:text;
+      color:transparent;
+      margin-bottom:.3rem;
+      font-size:1rem;
+    }
+    .blog-meta {
+      font-size:0.75rem;
+      color:#9ca3af;
+      margin-bottom:0.15rem;
+    }
+    .blog-excerpt { font-size:0.9rem; color:#e5e7eb; }
+    .read-more {
+      display:inline-block;
+      margin-top:.45rem;
+      font-weight:700;
+      font-size:0.85rem;
+      color:#93c5fd;
+    }
+
+    .contact-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:1.25rem;
+      margin-bottom:2.25rem;
+    }
+    .contact-card {
+      padding:1.25rem;
+      background:#111827;
+      border-radius:0.8rem;
+      box-shadow:0 4px 16px rgba(15,23,42,0.9);
+      text-align:center;
+      border:1px solid rgba(55,65,81,0.9);
+      text-decoration:none;
+      color:inherit;
+      display:flex;
+      flex-direction:column;
+      gap:0.4rem;
+      align-items:center;
+      justify-content:center;
+      transition:transform .18s ease, box-shadow .18s ease;
+      font-size:0.9rem;
+    }
+    .contact-card i { font-size:1.3rem; margin-bottom:0.25rem; }
+    .contact-card h3 { font-size:0.95rem; }
+    .contact-card:hover {
+      transform:translateY(-4px);
+      box-shadow:0 12px 28px rgba(15,23,42,0.9);
+    }
+
+    footer {
+      padding:1.75rem 1.25rem 2rem;
+      border-top:1px solid #374151;
+      background:#020617;
+      text-align:center;
+      font-size:0.85rem;
+      color:#9ca3af;
+      margin-top:2rem;
+    }
+
+    .hidden { display:none !important; }
+
+    /* Responsive */
+    @media (max-width:900px){
+      .about-grid { grid-template-columns:1fr; }
+      .about-image { order:-1; height:18rem; }
+    }
+    @media (max-width:768px){
+      .nav-links { display:none; }
+      .mobile-menu-btn { display:block; }
+      .nav-links.active {
+        display:flex;
+        flex-direction:column;
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        background:#020617;
+        padding:0.85rem 1.25rem 1rem;
+        gap:0.4rem;
+        border-bottom:1px solid #1f2937;
+      }
+      .hero { padding-top:5.5rem; }
+      section { padding:3.5rem 1.1rem; }
+    }
+    @media (max-width:640px){
+      .hero h1 { font-size:2.4rem; }
+      .stats-grid { grid-template-columns:1fr 1fr; }
+      .project-image { height:180px; }
+      .video-thumbnail { height:200px; }
+      .gallery-item { height:135px; }
+      .cert-card { flex-direction:column; align-items:flex-start; }
+      .cert-image img { width:100%; height:auto; }
+    }
+  ]]></b:skin>
+
+  <!-- small extra styles that are not in b:skin (kept minimal) -->
+  <style type='text/css'>
+/* utility */
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav id='navbar'>
+    <div class='nav-container'>
+      <div class='logo'><data:blog.title/></div>
+      <ul class='nav-links' id='navLinks'>
+        <li><a class='nav-link active' href='#home'>Home</a></li>
+        <li><a class='nav-link' href='#about'>About</a></li>
+        <li><a class='nav-link' href='#projects'>Projects</a></li>
+        <li><a class='nav-link' href='#skills'>Skills</a></li>
+        <li><a class='nav-link' href='#videos'>Videos</a></li>
+        <li><a class='nav-link' href='#gallery'>Gallery</a></li>
+        <li><a class='nav-link' href='#certifications'>Certifications</a></li>
+        <li><a class='nav-link' href='#blog'>Blog</a></li>
+        <li><a class='nav-link' href='#contact'>Contact</a></li>
+      </ul>
+      <div class='nav-actions'>
+        <!-- CV download button: put your real link -->
+        <a class='btn-cv' href='https://example.com/your-cv.pdf' id='cvBtn' rel='noopener' target='_blank'>Download CV</a>
+        <button aria-label='Open menu' class='mobile-menu-btn' id='mobileMenuBtn'><i class='fas fa-bars'></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class='hero' id='home'>
+    <div class='blob blob-1'></div>
+    <div class='blob blob-2'></div>
+    <div class='blob blob-3'></div>
+
+    <div class='hero-content'>
+      <div class='availability-badge'>&#10024; Available for Freelance Projects</div>
+      <h1>Senior Frontend<br/>Engineer</h1>
+      <p>Crafting exceptional digital experiences with modern web technologies. Specialized in React, TypeScript, and scalable frontend architectures.</p>
+      <div class='cta-buttons'>
+        <a class='btn btn-primary' href='#projects'>View Projects</a>
+        <a class='btn btn-secondary' href='#videos'>Watch Tutorials</a>
+        <a class='btn btn-outline' href='#contact'>Get in Touch</a>
+      </div>
+      <div class='social-links'>
+        <a aria-label='GitHub' href='https://github.com' target='_blank'><i class='fab fa-github'></i></a>
+        <a aria-label='LinkedIn' href='https://linkedin.com' target='_blank'><i class='fab fa-linkedin'></i></a>
+        <a aria-label='Email' href='mailto:contact@example.com'><i class='fas fa-envelope'></i></a>
+      </div>
+      <div class='scroll-indicator'>
+        <a class='btn btn-outline' href='#about'>Scroll to About &#8595;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id='about'>
+    <h2 class='section-title'>About Me</h2>
+    <p class='section-subtitle'>A quick background and where I focus my energy.</p>
+    <div class='about-grid'>
+      <div class='about-image'>
+        <img alt='Profile photo' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiILMmCwK63L7GraNyV2rBlKNcqbjTdQjDOK7YAeAdM-MXOEGbvUkji5l_1x-wm4eWnyKSn_Tmf1VG1k_WMkjisj6_lE4tib7vCA4dHSCrltWw1LEMqRN-QJvzdjD_qfa88hsxWSZOkQHJKGrX_wq34fjrTHzwzgYSuwpCqCtgG8ECB1kjpJUbqRPtLUu8/s3882/photo-1498050108023-c5249f4df085.jpg'/>
+      </div>
+      <div class='about-text'>
+        <h3 style='margin-bottom:0.75rem'>Hi, I&#39;m John Doe &#8212; Frontend Engineer</h3>
+        <p>I build high-performance, accessible, and maintainable web applications. I enjoy solving hard UX problems, optimizing rendering performance, and mentoring teams on frontend best practices.</p>
+        <div class='stats-grid'>
+          <div class='stat-card'><div class='stat-number blue'>8+</div><div class='stat-label'>Years Experience</div></div>
+          <div class='stat-card'><div class='stat-number purple'>100+</div><div class='stat-label'>Projects Delivered</div></div>
+          <div class='stat-card'><div class='stat-number pink'>50K</div><div class='stat-label'>GitHub Stars</div></div>
+          <div class='stat-card'><div class='stat-number green'>20</div><div class='stat-label'>Mentored Engineers</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class='section-alt' id='projects'>
+    <div style='max-width:1280px;margin:0 auto;'>
+      <h2 class='section-title'>Selected Projects</h2>
+      <p class='section-subtitle'>Projects that showcase architecture, performance and UX.</p>
+
+      <div class='projects-grid' id='projectsGrid'>
+
+        <div class='project-card'>
+          <div class='project-image'>
+            <img alt='Realtime Dashboard' src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&amp;h=600&amp;fit=crop'/>
+          </div>
+          <div class='project-content'>
+            <div class='project-title'>Realtime Dashboard</div>
+            <div class='project-description'>High-performance React dashboard with websockets and charting.</div>
+            <div class='project-tags'>
+              <button class='tag' type='button'>React</button>
+              <button class='tag' type='button'>Websockets</button>
+              <button class='tag' type='button'>D3</button>
+            </div>
+            <p style='font-size:0.82rem;color:#9ca3af;'>Used in production by 10k+ users</p>
+          </div>
+        </div>
+
+        <div class='project-card'>
+          <div class='project-image'>
+            <img alt='Design System' src='https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&amp;h=600&amp;fit=crop'/>
+          </div>
+          <div class='project-content'>
+            <div class='project-title'>Design System</div>
+            <div class='project-description'>A scalable component library with theming and accessibility.</div>
+            <div class='project-tags'>
+              <button class='tag' type='button'>TypeScript</button>
+              <button class='tag' type='button'>Storybook</button>
+              <button class='tag' type='button'>WCAG</button>
+            </div>
+            <p style='font-size:0.82rem;color:#9ca3af;'>60+ reusable components</p>
+          </div>
+        </div>
+
+        <div class='project-card'>
+          <div class='project-image'>
+            <img alt='E-commerce PWA' src='https://images.unsplash.com/photo-1593720213428-28a5b9e94613?w=1200&amp;h=600&amp;fit=crop'/>
+          </div>
+          <div class='project-content'>
+            <div class='project-title'>E-commerce PWA</div>
+            <div class='project-description'>Fast, offline-capable storefront with payment integrations.</div>
+            <div class='project-tags'>
+              <button class='tag' type='button'>PWA</button>
+              <button class='tag' type='button'>Next.js</button>
+              <button class='tag' type='button'>Stripe</button>
+            </div>
+            <p style='font-size:0.82rem;color:#9ca3af;'>50% faster checkout</p>
+          </div>
+        </div>
+
+        <!-- Hidden extra project -->
+        <div class='project-card hidden' data-extra='true'>
+          <div class='project-image'>
+            <img alt='Telemetry SDK' src='https://images.unsplash.com/photo-1526378720834-7b7a49b3b60f?w=1200&amp;h=600&amp;fit=crop'/>
+          </div>
+          <div class='project-content'>
+            <div class='project-title'>Telemetry SDK</div>
+            <div class='project-description'>Lightweight SDK for telemetry and error reporting.</div>
+            <div class='project-tags'>
+              <button class='tag' type='button'>SDK</button>
+              <button class='tag' type='button'>Telemetry</button>
+              <button class='tag' type='button'>Node</button>
+            </div>
+            <p style='font-size:0.82rem;color:#9ca3af;'>Only 0.5% performance overhead</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div style='text-align:center;margin-top:1rem;'>
+        <button class='btn btn-outline' id='projectsToggle' type='button'>Show more</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id='skills'>
+    <h2 class='section-title'>Skills &amp; Tools</h2>
+    <p class='section-subtitle'>Technologies I use frequently.</p>
+    <div class='skills-grid' id='skillsGrid'>
+
+      <div class='skill-card'>
+        <div class='skill-header'><i class='fab fa-react'></i><div class='skill-title'>Frontend Frameworks</div></div>
+        <div class='skill-items'><span class='tag'>React</span><span class='tag'>Next.js</span><span class='tag'>Preact</span></div>
+      </div>
+
+      <div class='skill-card'>
+        <div class='skill-header'><i class='fab fa-js-square'></i><div class='skill-title'>Languages &amp; Tooling</div></div>
+        <div class='skill-items'><span class='tag'>TypeScript</span><span class='tag'>JavaScript</span><span class='tag'>Babel</span><span class='tag'>Webpack</span></div>
+      </div>
+
+      <div class='skill-card'>
+        <div class='skill-header'><i class='fas fa-paint-brush'></i><div class='skill-title'>Design &amp; UX</div></div>
+        <div class='skill-items'><span class='tag'>Figma</span><span class='tag'>Accessibility</span><span class='tag'>Design Systems</span></div>
+      </div>
+
+      <div class='skill-card'>
+        <div class='skill-header'><i class='fas fa-server'></i><div class='skill-title'>Infrastructure</div></div>
+        <div class='skill-items'><span class='tag'>Vercel</span><span class='tag'>Netlify</span><span class='tag'>Docker</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Videos -->
+  <section class='section-alt' id='videos'>
+    <div style='max-width:1280px;margin:0 auto;'>
+      <h2 class='section-title'>Tutorials &amp; Talks</h2>
+      <p class='section-subtitle'>Selected videos and talks.</p>
+      <div class='videos-grid' id='videosGrid'>
+
+        <div class='video-card'>
+          <a class='video-link' href='https://www.youtube.com/watch?v=ysz5S6PUM-U' target='_blank' rel='noopener'>
+            <div class='video-thumbnail'>
+              <img alt='Building a Real-Time Chat Application' src='https://i.ytimg.com/vi/ysz5S6PUM-U/maxresdefault.jpg?w=1200&amp;h=600&amp;fit=crop'/>
+              <div class='play-overlay'><span aria-hidden='true' class='play-icon'>&#9654;</span></div>
+            </div>
+            <div class='video-info'>
+              <div class='video-title'>Building a Real-Time Chat Application</div>
+              <div class='video-meta'>125K views</div>
+            </div>
+          </a>
+        </div>
+
+        <div class='video-card'>
+          <a class='video-link' href='https://www.youtube.com/watch?v=4q2vvZn9fU8' target='_blank' rel='noopener'>
+            <div class='video-thumbnail'>
+              <img alt='Advanced TypeScript Patterns' src='https://i.ytimg.com/vi/4q2vvZn9fU8/maxresdefault.jpg?w=1200&amp;h=600&amp;fit=crop'/>
+              <div class='play-overlay'><span aria-hidden='true' class='play-icon'>&#9654;</span></div>
+            </div>
+            <div class='video-info'>
+              <div class='video-title'>Advanced TypeScript Patterns</div>
+              <div class='video-meta'>89K views</div>
+            </div>
+          </a>
+        </div>
+
+        <div class='video-card hidden' data-extra='true'>
+          <a class='video-link' href='https://www.youtube.com/watch?v=DL-l0E4s3bY' target='_blank' rel='noopener'>
+            <div class='video-thumbnail'>
+              <img alt='Optimizing Web Performance' src='https://i.ytimg.com/vi/DL-l0E4s3bY/maxresdefault.jpg?w=1200&amp;h=600&amp;fit=crop'/>
+              <div class='play-overlay'><span aria-hidden='true' class='play-icon'>&#9654;</span></div>
+            </div>
+            <div class='video-info'>
+              <div class='video-title'>Optimizing Web Performance</div>
+              <div class='video-meta'>210K views</div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+      <div style='text-align:center;margin-top:1rem;'>
+        <button class='btn btn-outline' id='videosToggle' type='button'>Show more</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id='gallery'>
+    <h2 class='section-title'>Gallery</h2>
+    <p class='section-subtitle'>Screenshots, designs and behind-the-scenes.</p>
+    <div class='gallery-grid' id='galleryGrid'>
+      <div class='gallery-item' data-short='UI'>
+        <img alt='Workspace' src='https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&amp;h=800&amp;fit=crop'/>
+        <div class='gallery-short'>UI</div>
+      </div>
+      <div class='gallery-item' data-short='DS'>
+        <img alt='Design' src='https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1200&amp;h=800&amp;fit=crop'/>
+        <div class='gallery-short'>DS</div>
+      </div>
+      <div class='gallery-item hidden' data-extra='true' data-short='CF'>
+        <img alt='Conference' src='https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=1200&amp;h=800&amp;fit=crop'/>
+        <div class='gallery-short'>CF</div>
+      </div>
+    </div>
+    <div style='text-align:center;margin-top:1rem;'>
+      <button class='btn btn-outline' id='galleryToggle' type='button'>Show more</button>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class='section-alt' id='certifications'>
+    <div style='max-width:1280px;margin:0 auto;'>
+      <h2 class='section-title'>Certifications</h2>
+      <p class='section-subtitle'>Professional certifications and recognitions.</p>
+      <div class='certifications-grid' id='certGrid'>
+        <div class='cert-card'>
+          <div class='cert-image'><img alt='Frontend Masters Cert' loading='lazy' src='https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=600&amp;h=400&amp;fit=crop'/></div>
+          <div class='cert-info'>
+            <h3>Frontend Masters - Advanced React</h3>
+            <div class='cert-issuer'>Frontend Masters</div>
+            <div class='cert-year'>2023</div>
+            <div><a href='https://frontendmasters.com/certificate/abc123' target='_blank' rel='noopener'>Verify</a></div>
+          </div>
+        </div>
+
+        <div class='cert-card'>
+          <div class='cert-image'><img alt='Google Web Performance Cert' loading='lazy' src='https://images.unsplash.com/photo-1557800636-894a64c1696f?w=600&amp;h=400&amp;fit=crop'/></div>
+          <div class='cert-info'>
+            <h3>Google - Web Performance</h3>
+            <div class='cert-issuer'>Google</div>
+            <div class='cert-year'>2022</div>
+            <div><a href='https://example.com/certs/google-web-performance' target='_blank' rel='noopener'>Verify</a></div>
+          </div>
+        </div>
+
+        <div class='cert-card hidden' data-extra='true'>
+          <div class='cert-image'><img alt='AWS Cert' loading='lazy' src='https://images.unsplash.com/photo-1523475496153-3d6cc1b7fa6b?w=600&amp;h=400&amp;fit=crop'/></div>
+          <div class='cert-info'>
+            <h3>AWS - Cloud Practitioner</h3>
+            <div class='cert-issuer'>Amazon Web Services</div>
+            <div class='cert-year'>2021</div>
+            <div><a href='https://www.aws.training/certification' target='_blank' rel='noopener'>Verify</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div style='text-align:center;margin-top:1rem;'>
+        <button class='btn btn-outline' id='certsToggle' type='button'>Show more</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog (section wrapper; real posts come from Blog widget below) -->
+  <section id='blog'>
+    <h2 class='section-title'>Writing &amp; Articles</h2>
+    <p class='section-subtitle'>Latest posts from the blog.</p>
+
+    <!-- The Blog widget will render posts here -->
+    <div class='blog-grid'>
+      <!-- Blogger injects posts from Blog1 (see widget below) -->
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class='section-alt' id='contact'>
+    <div style='max-width:1280px;margin:0 auto;'>
+      <h2 class='section-title'>Contact</h2>
+      <p class='section-subtitle'>Let&#39;s build something great together.</p>
+
+      <div class='contact-grid'>
+        <a class='contact-card' href='mailto:contact@example.com'>
+          <i class='fas fa-envelope'></i>
+          <h3>Email</h3>
+          <p>contact@example.com</p>
+        </a>
+        <a class='contact-card' href='tel:+1234567890'>
+          <i class='fas fa-phone'></i>
+          <h3>Phone</h3>
+          <p>+1 234 567 890</p>
+        </a>
+        <div class='contact-card'>
+          <i class='fas fa-map-marker-alt'></i>
+          <h3>Location</h3>
+          <p>Remote / Open to relocation</p>
+        </div>
+      </div>
+
+      <div style='text-align:center;margin-top:1rem;'>
+        <a class='btn btn-primary' href='mailto:contact@example.com'>Hire me</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Made with &#10084;&#65039; &#8212; Senior Frontend Engineer</p>
+    <p>&#169; <span id='year'></span> <data:blog.title/>. All rights reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script type='text/javascript'><![CDATA[
+  (function(){
+    // Mobile menu toggle
+    var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    var navLinks = document.getElementById('navLinks');
+    if(mobileMenuBtn){
+      mobileMenuBtn.addEventListener('click', function(){
+        if(navLinks) navLinks.classList.toggle('active');
+      });
+    }
+
+    // Navbar scroll effect
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function(){
+      if(!navbar) return;
+      if(window.scrollY > 20) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // Current year
+    var yearEl = document.getElementById('year');
+    if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var href = this.getAttribute('href');
+        if(!href || href === '#') return;
+        var target = document.querySelector(href);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+          if(navLinks && navLinks.classList.contains('active')){
+            navLinks.classList.remove('active');
+          }
+        }
+      });
+    });
+
+    // Active nav highlight
+    var sections = document.querySelectorAll('section');
+    var navItems = document.querySelectorAll('.nav-link');
+    function onScroll(){
+      if(!sections.length) return;
+      var idx = sections.length - 1;
+      for(var i=0;i<sections.length;i++){
+        var rect = sections[i].getBoundingClientRect();
+        if(rect.top <= 120) idx = i;
+      }
+      navItems.forEach(function(it){ it.classList.remove('active'); });
+      var id = (sections[idx] && sections[idx].id) ? sections[idx].id : 'home';
+      var activeLink = document.querySelector('.nav-link[href="#'+id+'"]');
+      if(activeLink) activeLink.classList.add('active');
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll);
+
+    // Close mobile menu on outside click
+    document.addEventListener('click', function(e){
+      if(!navLinks || !mobileMenuBtn) return;
+      if(navLinks.classList.contains('active')){
+        var inside = navLinks.contains(e.target) || mobileMenuBtn.contains(e.target);
+        if(!inside) navLinks.classList.remove('active');
+      }
+    });
+
+    // Toggle show more for sections
+    function toggleSection(btnId, selector){
+      var btn = document.getElementById(btnId);
+      if(!btn) return;
+      btn.addEventListener('click', function(){
+        var parent = document.querySelector(selector);
+        if(!parent) return;
+        var extras = parent.querySelectorAll('[data-extra]');
+        if(!extras.length) return;
+        var anyHidden = Array.prototype.some.call(extras, function(el){
+          return el.classList.contains('hidden');
+        });
+        extras.forEach(function(el){
+          if(anyHidden) el.classList.remove('hidden');
+          else el.classList.add('hidden');
+        });
+        btn.textContent = anyHidden ? 'Show less' : 'Show more';
+      });
+    }
+
+    toggleSection('projectsToggle', '#projects');
+    toggleSection('videosToggle', '#videos');
+    toggleSection('galleryToggle', '#gallery');
+    toggleSection('certsToggle', '#certifications');
+
+    // hide toggle button if no extras
+    function hideEmptyToggle(btnId, selector){
+      var btn = document.getElementById(btnId);
+      if(!btn) return;
+      var parent = document.querySelector(selector);
+      if(!parent) return;
+      var extras = parent.querySelectorAll('[data-extra]');
+      if(!extras || extras.length === 0) btn.style.display = 'none';
+    }
+    hideEmptyToggle('projectsToggle','#projects');
+    hideEmptyToggle('videosToggle','#videos');
+    hideEmptyToggle('galleryToggle','#gallery');
+    hideEmptyToggle('certsToggle','#certifications');
+
+  })();
+  ]]></script>
+
+  <!-- BLOGGER POSTS (desktop+mobile same layout) -->
+  <b:section class='main' id='main' maxwidgets='1' showaddelement='yes'>
+    <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog'>
+      <b:widget-settings>
+        <b:widget-setting name='showDateHeader'>true</b:widget-setting>
+        <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+        <b:widget-setting name='authorLabel'>By</b:widget-setting>
+        <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+        <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='showAuthor'>false</b:widget-setting>
+        <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+        <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='reactionsLabel'/>
+        <b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
+        <b:widget-setting name='style.layout'>1x1</b:widget-setting>
+        <b:widget-setting name='showLabels'>true</b:widget-setting>
+        <b:widget-setting name='showLocation'>true</b:widget-setting>
+        <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+        <b:widget-setting name='postsPerAd'>1</b:widget-setting>
+        <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+        <b:widget-setting name='style.bordercolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='showInlineAds'>false</b:widget-setting>
+        <b:widget-setting name='showReactions'>false</b:widget-setting>
+      </b:widget-settings>
+
+      <!-- MAIN: same for desktop & mobile -->
+      <b:includable id='main' var='top'>
+        <!-- posts -->
+        <div class='blog-posts hfeed' style='max-width:1280px;margin:0 auto;padding:0 1.25rem 3rem;'>
+
+          <b:include data='top' name='status-message'/>
+
+          <b:if cond='data:numPosts == 0'>
+            <div class='blog-card' style='margin-top:0.5rem;'>
+              <div class='blog-title'>No posts yet</div>
+              <div class='blog-excerpt'>Start publishing to see your articles here.</div>
+            </div>
+          </b:if>
+
+          <b:loop values='data:posts' var='post'>
+            <div class='blog-card'>
+              <div class='blog-meta'>
+                <i class='fas fa-calendar-alt'></i>
+                <b:if cond='data:post.timestamp'>
+                  <span>&#160;<data:post.timestamp/></span>
+                </b:if>
+              </div>
+              <b:if cond='data:post.title'>
+                <h3 class='blog-title'>
+                  <a expr:href='data:post.url'><data:post.title/></a>
+                </h3>
+              </b:if>
+              <div class='blog-excerpt'>
+                <b:if cond='data:post.snippet'>
+                  <data:post.snippet/>
+                <b:else/>
+                  <data:post.body/>
+                </b:if>
+              </div>
+              <a class='read-more' expr:href='data:post.url'>Read more</a>
+            </div>
+          </b:loop>
+
+        </div>
+
+        <!-- navigation -->
+        <b:include name='nextprev'/>
+
+        <!-- feed links -->
+        <b:include name='feedLinks'/>
+
+      </b:includable>
+
+      <!-- Keep default helper includables from Blogger -->
+      <b:includable id='nextprev'>
+        <div class='blog-pager' id='blog-pager' style='text-align:center;margin-bottom:2rem;'>
+          <b:if cond='data:newerPageUrl'>
+            <span id='blog-pager-newer-link'>
+              <a class='blog-pager-newer-link' expr:href='data:newerPageUrl' expr:id='data:widget.instanceId + "_blog-pager-newer-link"' expr:title='data:newerPageTitle'>Newer Posts</a>
+            </span>
+          </b:if>
+          <b:if cond='data:olderPageUrl'>
+            <span id='blog-pager-older-link' style='margin-left:1rem;'>
+              <a class='blog-pager-older-link' expr:href='data:olderPageUrl' expr:id='data:widget.instanceId + "_blog-pager-older-link"' expr:title='data:olderPageTitle'>Older Posts</a>
+            </span>
+          </b:if>
+        </div>
+      </b:includable>
+
+      <b:includable id='feedLinks'>
+        <b:if cond='data:feedLinks'>
+          <div class='blog-feeds' style='text-align:center;margin-bottom:2rem;'>
+            <data:feedLinksMsg/>
+            <b:loop values='data:feedLinks' var='f'>
+              &#160;<a class='feed-link' expr:href='data:f.url' expr:type='data:f.mimeType' target='_blank'><data:f.name/> (<data:f.feedType/>)</a>
+            </b:loop>
+          </div>
+        </b:if>
+      </b:includable>
+
+      <b:includable id='status-message'>
+        <b:if cond='data:navMessage'>
+          <div class='status-msg-wrap' style='max-width:1280px;margin:0 auto 1rem;'>
+            <div class='status-msg-body'>
+              <data:navMessage/>
+            </div>
+          </div>
+        </b:if>
+      </b:includable>
+
+    </b:widget>
+  </b:section>
+
+</body>
+</html>
